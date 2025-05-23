@@ -1,0 +1,24 @@
+body {
+  min-height: 100vh;
+  background: linear-gradient(to bottom, #a3d8f4, #ffffff);
+}
+
+.custom-btn {
+  background-color: #f5a623;
+  border: none;
+  color: #000000;
+}
+
+.custom-btn:hover,
+.custom-btn:focus,
+.custom-btn:active,
+.custom-btn:focus-visible {
+  background-color: #f5a623 !important;
+  color: #000000 !important;
+  box-shadow: none !important;
+  border: none !important;
+}
+
+.custom-icon {
+  width: 100px;
+}
