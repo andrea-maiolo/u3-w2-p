@@ -78,7 +78,7 @@ function WeatherPageDetails() {
           <Button className="fs-4 fw-bold custom-btn" onClick={handleBack}>
             Home
           </Button>
-          <Row>
+          <Row className="mt-3">
             <Col>
               <h2 className="text-center">
                 {params.location} {weatherData.sys.country}
@@ -133,19 +133,13 @@ function WeatherPageDetails() {
               </Card>
             </Col>
           </Row>
-          {/* <Row>
-            {daysData.list.map((ele) => {
-              return <DailyWeather key={ele.dt} extraInfo={ele} />;
-            })}
-          </Row> */}
-          {/* test */}
+
           <Container className="py-4">
             <Carousel
               interval={1500}
               // interval={null}
               pause="hover"
-              nextIcon={<span className="btn text-black custom-ctrl">&gt;</span>}
-              prevIcon={<span className="btn text-black">&lt;</span>}
+              controls="true"
             >
               {daysData.list.map((ele) => (
                 <Carousel.Item key={ele.dt}>
@@ -156,8 +150,6 @@ function WeatherPageDetails() {
               ))}
             </Carousel>
           </Container>
-
-          {/* fine test */}
         </Container>
       )}
     </>

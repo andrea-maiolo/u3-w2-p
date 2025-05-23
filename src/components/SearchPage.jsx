@@ -47,7 +47,7 @@ const SearchPage = () => {
                 Inizia ricerca
               </Button>
             </Form>
-            <Accordion defaultActiveKey="0" className="mt-3 w-50">
+            <Accordion className="mt-3">
               <Accordion.Item eventKey="0">
                 <Accordion.Header>Info ricerca</Accordion.Header>
                 <Accordion.Body>
