@@ -1,5 +1,5 @@
 import { useParams, useNavigate } from "react-router-dom";
-import { Container, Row, Col, Card, Button, Alert, Image } from "react-bootstrap";
+import { Container, Row, Col, Card, Button, Alert, Image, Carousel } from "react-bootstrap";
 import { useEffect, useState } from "react";
 import DailyWeather from "./DailyWeather";
 
@@ -26,7 +26,7 @@ function WeatherPageDetails() {
         setWeatherData(data);
         console.log(data);
 
-        const secondRes = await fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${data.coord.lat}&lon=${data.coord.lon}&appid=${key}`);
+        const secondRes = await fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${data.coord.lat}&lon=${data.coord.lon}&appid=${key}&units=metric`);
 
         if (!secondRes.ok) {
           setErrorData("Server non disponibile, riprova più tardi");
@@ -67,7 +67,7 @@ function WeatherPageDetails() {
           </Button>
         </Container>
       )}
-      {weatherData && (
+      {weatherData && daysData && (
         <Container className="py-5">
           <Button className="fs-4 fw-bold custom-btn" onClick={handleBack}>
             Home
@@ -83,7 +83,6 @@ function WeatherPageDetails() {
               </div>
             </Col>
           </Row>
-
           <Row className="g-3 justify-content-center">
             <Col xs={12} sm={6} md={4} lg={6} className="text-center">
               <Card className="shadow">
@@ -126,10 +125,31 @@ function WeatherPageDetails() {
               </Card>
             </Col>
           </Row>
+          {/* <Row>
+            {daysData.list.map((ele) => {
+              return <DailyWeather key={ele.dt} extraInfo={ele} />;
+            })}
+          </Row> */}
+          {/* test */}
+          <Container className="py-4">
+            <Carousel
+              interval={1500}
+              // interval={null}
+              pause="hover"
+              nextIcon={<span className="btn text-black custom-ctrl">&gt;</span>}
+              prevIcon={<span className="btn text-black">&lt;</span>}
+            >
+              {daysData.list.map((ele) => (
+                <Carousel.Item key={ele.dt}>
+                  <div className="text-center">
+                    <DailyWeather extraInfo={ele} />
+                  </div>
+                </Carousel.Item>
+              ))}
+            </Carousel>
+          </Container>
 
-          <Row>
-            <DailyWeather daysData={daysData} />
-          </Row>
+          {/* fine test */}
         </Container>
       )}
     </>

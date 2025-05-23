@@ -22,3 +22,12 @@ body {
 .custom-icon {
   width: 100px;
 }
+
+.custom-gradient {
+  background: linear-gradient(to bottom, #ffffff, #f5a623);
+}
+
+.custom-ctrl {
+  color: #000;
+  text-decoration: none;
+}
