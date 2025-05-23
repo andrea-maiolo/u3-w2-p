@@ -3,6 +3,10 @@ body {
   background: linear-gradient(to bottom, #a3d8f4, #ffffff);
 }
 
+.custom-h {
+  height: calc(100% - 41.57px);
+}
+
 .custom-btn {
   background-color: #f5a623;
   border: none;
