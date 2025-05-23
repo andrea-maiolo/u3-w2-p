@@ -5,8 +5,6 @@ const DailyWeather = ({ extraInfo }) => {
   const giorno = dataGiorno.toLocaleDateString("it-IT", { weekday: "long" });
   const ora = dataGiorno.toTimeString().slice(0, 5);
 
-  console.log(giorno);
-
   return (
     <Card className="shadow custom-gradient py-5">
       <Card.Body>

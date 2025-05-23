@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Button, Col, Container, Form, Row } from "react-bootstrap";
+import { Button, Col, Container, Accordion, Form, Row } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 
 const SearchPage = () => {
@@ -47,6 +47,16 @@ const SearchPage = () => {
                 Inizia ricerca
               </Button>
             </Form>
+            <Accordion defaultActiveKey="0" className="mt-3 w-50">
+              <Accordion.Item eventKey="0">
+                <Accordion.Header>Info ricerca</Accordion.Header>
+                <Accordion.Body>
+                  La ricerca funziona meglio se si usa nome città, codice stato o codice paese.
+                  <br />
+                  eg. Roma, IT
+                </Accordion.Body>
+              </Accordion.Item>
+            </Accordion>
           </Col>
         </Row>
       </Container>

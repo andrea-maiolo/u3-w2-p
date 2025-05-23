@@ -10,6 +10,7 @@ function WeatherPageDetails() {
   const [errorData, setErrorData] = useState(null);
   const [weatherData, setWeatherData] = useState(null);
   const [daysData, setDaysData] = useState(null);
+  const [giornoMain, setGiornoMain] = useState("");
 
   const fetchWeatherData = async (location) => {
     try {
@@ -24,7 +25,7 @@ function WeatherPageDetails() {
         setErrorData("Nessuna città  corrisponde al nome cercato, prova di nuovo");
       } else {
         setWeatherData(data);
-        console.log(data);
+        getRightDay(data);
 
         const secondRes = await fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${data.coord.lat}&lon=${data.coord.lon}&appid=${key}&units=metric`);
 
@@ -38,13 +39,18 @@ function WeatherPageDetails() {
           setErrorData("Nessuna città  corrisponde al nome cercato, prova di nuovo");
         } else {
           setDaysData(daysData);
-          console.log(daysData);
         }
       }
     } catch (err) {
       console.error("Error:", err.message);
       setErrorData(err.message);
     }
+  };
+
+  const getRightDay = (d) => {
+    console.log(d);
+    const dataMain = new Date(d.dt);
+    setGiornoMain(dataMain.toLocaleDateString("it-IT", { weekday: "long", month: "long", day: "numeric" }));
   };
 
   useEffect(() => {
@@ -74,8 +80,10 @@ function WeatherPageDetails() {
           </Button>
           <Row>
             <Col>
-              <h2 className="text-center">{params.location}</h2>
-              <p className="text-center text-muted">Tuesday, April 23, 15:45</p>
+              <h2 className="text-center">
+                {params.location} {weatherData.sys.country}
+              </h2>
+              <p className="text-center">{giornoMain.toUpperCase()}</p>
               <div className="text-center mb-4">
                 <h1>{weatherData.main.temp}°C</h1>
                 <p>{weatherData.weather[0].main}</p>
